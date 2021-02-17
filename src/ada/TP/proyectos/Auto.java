@@ -1,18 +1,16 @@
 package ada.TP.proyectos;
 
-public class Auto extends  Automotor{
-    String tipoAuto;
+public class Auto extends  Automotor implements VehiculoACombustion{
+    Integer cantidadPuertas;
 
-    public Auto(Persona propietario, String tipoAuto) {
-        super(propietario);
-        this.tipoAuto = tipoAuto;
+    public Auto() {
     }
 
-    public String getTipoAuto() {
-        return tipoAuto;
+    public Integer getCantidadPuertas() {
+        return cantidadPuertas;
     }
 
-    public void setTipoAuto(String tipoAuto) {
-        this.tipoAuto = tipoAuto;
+    public void setCantidadPuertas(Integer cantidadPuertas) {
+        this.cantidadPuertas = cantidadPuertas;
     }
 }

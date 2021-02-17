@@ -5,14 +5,19 @@ import java.util.List;
 
 public class  Registro {
    private List<Automotor> automotores;
-   private  String Seccional;
+   private String seccional;
 
-    public Registro(List<Automotor> automotores , String seccional) {
 
+    public Registro(List<Automotor> automotores, String seccional) {
+        this.automotores = automotores;
+        this.seccional = seccional;
+    }
+
+    public Registro() {
     }
 
     public void agregarAutomotores(){
-        automotores.add(new Automotor())
+        automotores.add(new Automotor());
     }
 
     public List<Automotor> getAutomotores() {
@@ -24,10 +29,10 @@ public class  Registro {
     }
 
     public String getSeccional() {
-        return Seccional;
+        return seccional;
     }
 
     public void setSeccional(String seccional) {
-        Seccional = seccional;
+        seccional = seccional;
     }
 }
