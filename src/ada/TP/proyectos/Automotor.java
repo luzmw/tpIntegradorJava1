@@ -1,12 +1,13 @@
 package ada.TP.proyectos;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Automotor {
+public class Automotor {//tambien implemente registrable?
     private Persona propietario;
     private List<Conductor> conductoresAutorizados;
-    private String uso; //profesional o particular
+    private TipoDeUso tipoDeUso;
     private String patente;
     private LocalDate fechaDeAlta;
 
@@ -17,11 +18,11 @@ public class Automotor {
         this.propietario = propietario;
     }
 
-    public Automotor(Persona propietario, List<Conductor> conductoresAutorizados, String uso,
-                     String patente, LocalDate fechaDeAlta, String tipoMotor) {
+    public Automotor(Persona propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso,
+        String patente, LocalDate fechaDeAlta) {
         this.propietario = propietario;
-        this.conductoresAutorizados = conductoresAutorizados;
-        this.uso = uso;
+        this.conductoresAutorizados = new ArrayList<>();
+        this.tipoDeUso = tipoDeUso;
         this.patente = patente;
         this.fechaDeAlta = fechaDeAlta;
     }
@@ -42,12 +43,12 @@ public class Automotor {
         this.conductoresAutorizados = conductoresAutorizados;
     }
 
-    public String getUso() {
-        return uso;
+    public TipoDeUso getTipoDeUso() {
+        return tipoDeUso;
     }
 
-    public void setUso(String uso) {
-        this.uso = uso;
+    public void setTipoDeUsoUso(String tipoDeUsoUso) {
+        this.tipoDeUso = tipoDeUso;
     }
 
     public String getPatente() {

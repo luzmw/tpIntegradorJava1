@@ -1,6 +1,6 @@
 package ada.TP.proyectos;
 
-public class Persona {
+public  class Persona{
     private String nombre;
     private String dni;
     private String direccion;
@@ -38,4 +38,7 @@ public class Persona {
         this.direccion = direccion;
     }
 
+
+
 }
+

@@ -1,8 +1,14 @@
 package ada.TP.proyectos;
 
-public class Conductor extends Persona {
+public class Conductor extends Persona implements Registrable {
 
     String nroLicenciaConducir;
+
+
+    public Conductor(String nombre, String direccion, String dni, String nroLicenciaConducir) {
+        super(nombre, direccion, dni);
+        this.nroLicenciaConducir = nroLicenciaConducir;
+    }
 
     public Conductor() {
     }
@@ -14,4 +20,30 @@ public class Conductor extends Persona {
     public void setNroLicenciaConducir(String nroLicenciaConducir) {
         this.nroLicenciaConducir = nroLicenciaConducir;
     }
+
+
+    @Override
+    public void asignarDiaDeAlta() {
+
+    }
+
+    @Override
+    public void asignarLicencia() {
+
+    }
+
+    @Override
+    public void asignarPatente() {
+
+    }
+
+    @Override
+    public void agregarARegistro() {
+
+    }
+
+    @Override
+    public String verDetalles() {
+        return null;
+        }
 }
