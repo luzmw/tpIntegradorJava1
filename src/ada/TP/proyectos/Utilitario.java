@@ -10,8 +10,8 @@ public class Utilitario extends  Automotor implements Registrable{
     public Utilitario() {
     }
 
-    public Utilitario(Persona propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta) {
-        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+    public Utilitario(Propietario propietario) {
+        super(propietario);
     }
 
     @Override

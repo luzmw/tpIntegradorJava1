@@ -32,6 +32,6 @@ public class AutoElectrico  extends Automotor implements VehiculoElectrico, Regi
 
     @Override
     public String verDetalles() {
-        return null;
+        return super.verDetalles();
     }
 }

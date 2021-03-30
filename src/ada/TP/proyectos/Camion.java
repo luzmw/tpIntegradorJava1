@@ -11,10 +11,9 @@ public class Camion extends  Automotor implements  Registrable{
     public Camion() {
     }
 
-    public Camion(Persona propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta, double tara, double mma) {
-        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+    public Camion(Propietario propietario, double tara) {
+        super(propietario);
         this.tara = tara;
-        this.mma = mma;
     }
 
     public double getTara() {
@@ -51,11 +50,22 @@ public class Camion extends  Automotor implements  Registrable{
     @Override
     public void agregarARegistro() {
 
+
     }
 
     @Override
     public String verDetalles() {
+        Double mma = this.mma;
+        Double tara= this.tara;
+        String fechaAlta = super.getFechaDeAlta().toString();
+        //patente
+        String autorizados = "";
+        String propietario= super.getPropietario().verDetalles();
 
-        return "camión"+tara + mma+ this.getPropietario();
+        for(Conductor c :super.getConductoresAutorizados()){
+            // c.verDetalles() // tenés que completar este método
+            autorizados += c.getNroLicenciaConducir()+" "+c.verDetalles();
+        }
+        return "Datos del vehículo Camión: tara  " + tara+ "  mma "+mma+ " puertas, fecha: " + fechaAlta+ " - autorizados: " +propietario;
     }
 }

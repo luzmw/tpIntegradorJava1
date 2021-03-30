@@ -45,6 +45,16 @@ public class Moto extends Automotor  implements  VehiculoACombustion, Registrabl
 
     @Override
     public String verDetalles() {
-        return null;
+        String fechaAlta = super.getFechaDeAlta().toString();
+        //patente
+        String autorizados = "";
+        String propietario= super.getPropietario().verDetalles();
+
+        for(Conductor c :super.getConductoresAutorizados()){
+            // c.verDetalles() // tenés que completar este método
+            autorizados += c.getNroLicenciaConducir()+" "+c.verDetalles();
+        }
+        return "el auto tiene  " + " puertas, fecha: " + fechaAlta+ " - autorizados: " +propietario;
+
     }
 }

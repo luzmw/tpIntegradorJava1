@@ -2,7 +2,7 @@ package ada.TP.proyectos;
 
 public class Conductor extends Persona implements Registrable {
 
-    String nroLicenciaConducir;
+    private String nroLicenciaConducir;
 
 
     public Conductor(String nombre, String direccion, String dni, String nroLicenciaConducir) {
@@ -44,6 +44,13 @@ public class Conductor extends Persona implements Registrable {
 
     @Override
     public String verDetalles() {
-        return null;
+        String nombre= super.getNombre();
+        String direccion= super.getDireccion();
+        String dni = super.getDni();
+        String nroLicenciaConducir = this.getNroLicenciaConducir();
+
+        return "nombre: "+nombre+" direccion: "+direccion+ "dni "+dni+"nro licencia "+nroLicenciaConducir;
         }
+
+
 }

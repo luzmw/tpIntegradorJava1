@@ -3,10 +3,7 @@ package ada.TP.proyectos;
 import com.sun.jdi.VMOutOfMemoryException;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 /*
 La DNRPA (Dirección Nac. Reg. Propiedad del Automotor) necesita un sistema para anotar todos los vehículos registrados en el país.
 La DNRPA tiene Registros seccionales.
@@ -81,16 +78,16 @@ public class Dnrpa {
         conductores.add(unConductor);
 
         //instanciar persona propietario
-        Persona propietario = new Persona();
-        propietario = (Persona) unConductor;
+        Propietario propietario = new Propietario();
 
 
-        //propietario.setDni("27565369");
-        //propietario.setNombre("pepe");
-        //propietario.setDireccion("lujan 555");
 
+        propietario.setDni("27565369");
+        propietario.setNombre("Olaf");
+        propietario.setDireccion("tapial 555");
+        propietario.setLicPropiedad("5555555");
         //crear lista de automotores
-        List<Automotor> automotores = new ArrayList<>();
+        List<Registrable> automotores = new ArrayList<>();
 
         //instanciar automotor
         Auto auto = new Auto();
@@ -104,19 +101,66 @@ public class Dnrpa {
         auto.setPatente("asd653");
         //agregar automotor a lista de automotores
         automotores.add(auto);
-        System.out.println(auto.verDetalles());
 
-        //instanciar registro
+
+        //instanciar automotor
+        Moto m = new Moto();
+        //setear propietario
+        m.setPropietario(propietario);
+        //setear lista conductores
+        m.setConductoresAutorizados(conductores);
+        m.setTipoDeUsoUso("profesional");
+        m.setFechaDeAlta(LocalDate.now());
+        m.setPatente("asd653");
+
+        Camion ca= new Camion();
+        Map<Camion, Propietario>listabeta = new HashMap<>();
+        Camion c2 = new Camion();
+        Camion c3 = new Camion();
+        Propietario pmas = new Propietario();
+        pmas.setDni("27565369");
+        pmas.setNombre("juan");
+        pmas.setDireccion("tapial 555");
+        pmas.setLicPropiedad("5555555");
+        Propietario otrop= new Propietario();
+        otrop.setDni("27565369");
+        otrop.setNombre("Leo");
+        otrop.setDireccion("tapial 555");
+        otrop.setLicPropiedad("5555555");
+        c2.setPropietario(otrop);
+        listabeta.put(c2,otrop);
+        ca.setPropietario(propietario);
+       listabeta.put(ca,propietario);
+        c3.setPropietario(pmas);
+        listabeta.put(c3,pmas);
+
+
+        //setear lista conductores
+        ca.setConductoresAutorizados(conductores);
+        ca.setTipoDeUsoUso("profesional");
+        ca.setFechaDeAlta(LocalDate.now());
+        ca.setPatente("asd653");
+        ca.setMma(28.5);
+        ca.setTara(33.22);
+        //System.out.println(m.verDetalles());
+        //agregar automotor a lista de automotores
+        automotores.add(auto);
+        automotores.add(m);
+        automotores.add(ca);
+
+
         Registro registro = new Registro();
         //setear lista de automotores
-        //registro.setAutomotores(automotores);
+        registro.setAutomotores(automotores);
         registro.setSeccional("carapachay");
+        System.out.println(registro.listarPropietarios());
+        System.out.println(registro.ListarAutos(automotores));
 
-
+        //System.out.println("lista "+registro.verElementosRegistrados());
         //agregar registro a lista registrosSeccionales
         registrosSeccionales.add(registro);
         Camion c= new Camion();
-        c.verDetalles();
+
 
         /*
         armar lista de propietarios (personas)
@@ -140,6 +184,8 @@ public class Dnrpa {
             */
 
         }while (op!=0);
+
+
 
 
           }

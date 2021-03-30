@@ -6,7 +6,7 @@ import java.util.List;
 public class MotoElectrica extends Automotor implements VehiculoElectrico, Registrable {
 
 
-    public MotoElectrica(Persona propietario) {
+    public MotoElectrica(Propietario propietario) {
         super(propietario);
     }
 
@@ -42,6 +42,15 @@ public class MotoElectrica extends Automotor implements VehiculoElectrico, Regis
 
     @Override
     public String verDetalles() {
-        return null;
+        String fechaAlta = super.getFechaDeAlta().toString();
+        //patente
+        String autorizados = "";
+        String propietario= super.getPropietario().verDetalles();
+
+        for(Conductor c :super.getConductoresAutorizados()){
+            // c.verDetalles() // tenés que completar este método
+            autorizados += c.getNroLicenciaConducir()+" "+c.verDetalles();
+        }
+        return "el auto tiene  " + " puertas, fecha: " + fechaAlta+ " - autorizados: " +propietario;
     }
 }

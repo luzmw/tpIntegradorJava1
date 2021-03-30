@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Automotor {//tambien implemente registrable?
-    private Persona propietario;
+public class Automotor implements Registrable {
+    private Propietario propietario;
     private List<Conductor> conductoresAutorizados;
     private TipoDeUso tipoDeUso;
     private String patente;
@@ -14,11 +14,11 @@ public class Automotor {//tambien implemente registrable?
     public Automotor() {
     }
 
-    public Automotor(Persona propietario) {
+    public Automotor(Propietario propietario) {
         this.propietario = propietario;
     }
 
-    public Automotor(Persona propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso,
+    public Automotor(Propietario propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso,
         String patente, LocalDate fechaDeAlta) {
         this.propietario = propietario;
         this.conductoresAutorizados = new ArrayList<>();
@@ -27,11 +27,11 @@ public class Automotor {//tambien implemente registrable?
         this.fechaDeAlta = fechaDeAlta;
     }
 
-    public Persona getPropietario() {
+    public Propietario getPropietario() {
         return propietario;
     }
 
-    public void setPropietario(Persona propietario) {
+    public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
     }
 
@@ -67,5 +67,34 @@ public class Automotor {//tambien implemente registrable?
         this.fechaDeAlta = fechaDeAlta;
     }
 
+    @Override
+    public void asignarDiaDeAlta() {
 
+    }
+
+    @Override
+    public void asignarLicencia() {
+
+    }
+
+    @Override
+    public void asignarPatente() {
+
+    }
+
+    @Override
+    public void agregarARegistro() {
+
+    }
+
+    @Override
+    public String verDetalles() {
+        String Autorizados;
+        String  tipoDeUso= this.tipoDeUso.toString();
+        String patente;
+        String fechaDeAlta;
+        String propietario = this.getPropietario().verDetalles();
+
+        return null;
+    }
 }

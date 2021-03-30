@@ -1,6 +1,8 @@
 package ada.TP.proyectos;
 
+import javax.security.auth.login.AccountExpiredException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Auto extends  Automotor implements Registrable , VehiculoACombustion {
@@ -9,8 +11,8 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
     public Auto() {
     }
 
-    public Auto(Persona propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta, Integer cantidadPuertas) {
-        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+    public Auto(Propietario propietario, Integer cantidadPuertas) {
+        super(propietario);
         this.cantidadPuertas = cantidadPuertas;
     }
 
@@ -49,9 +51,18 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
     }
 //TODO mostrar objeto
     @Override
+
     public String verDetalles() {
-        Auto auto = new Auto();
-        return "el auto " + cantidadPuertas+ super.getFechaDeAlta()+ super.getConductoresAutorizados();
+        String fechaAlta = super.getFechaDeAlta().toString();
+        //patente
+        String autorizados = "";
+        String propietario= super.getPropietario().verDetalles();
+
+        for(Conductor c :super.getConductoresAutorizados()){
+            // c.verDetalles() // tenés que completar este método
+            autorizados += c.getNroLicenciaConducir()+" "+c.verDetalles();
+        }
+        return "el auto tiene  " + cantidadPuertas+ " puertas, fecha: " + fechaAlta+ " - autorizados: " +propietario;
     }
 }
 
