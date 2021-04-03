@@ -1,7 +1,11 @@
 package ada.TP.proyectos;
 
-public class Conductor extends Persona implements Registrable {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
+public class Conductor extends Persona implements Registrable {
+    Scanner scanner= new Scanner(System.in);
     private String nroLicenciaConducir;
 
 
@@ -36,9 +40,27 @@ public class Conductor extends Persona implements Registrable {
     public void asignarPatente() {
 
     }
-
+    //TODO validar
     @Override
     public void agregarARegistro() {
+        int op = 0;
+            Conductor c = new Conductor();
+
+            System.out.println("ingrese el nombre del conductor autorizado");
+            String nombre = scanner.nextLine();
+            c.setNombre(nombre);
+            System.out.println("Ingrese el dni del conductor autorizado");
+            String dni = scanner.nextLine();
+            c.setDni(dni);
+            System.out.println("Ingrese dirección");
+            String direccion = scanner.nextLine();
+            c.setDireccion(direccion);
+            System.out.println("nro de lic de conducir");
+            String licconducir = scanner.nextLine();
+            c.setNroLicenciaConducir(nroLicenciaConducir);
+
+
+
 
     }
 

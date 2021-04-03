@@ -55,7 +55,7 @@ itnstream aleatorio = aleatorio.ints
 public class Dnrpa {
 
     public static void main(String[] args) {
-        MotoElectrica me= new  MotoElectrica();
+        MotoElectrica me = new MotoElectrica();
         List<Registro> registrosSeccionales = new ArrayList<>();
         //TODO AgregarAutomotores(new Auto());
         //crear lista de conductores
@@ -79,7 +79,6 @@ public class Dnrpa {
 
         //instanciar persona propietario
         Propietario propietario = new Propietario();
-
 
 
         propietario.setDni("27565369");
@@ -113,8 +112,7 @@ public class Dnrpa {
         m.setFechaDeAlta(LocalDate.now());
         m.setPatente("asd653");
 
-        Camion ca= new Camion();
-        Map<Camion, Propietario>listabeta = new HashMap<>();
+        Camion ca = new Camion();
         Camion c2 = new Camion();
         Camion c3 = new Camion();
         Propietario pmas = new Propietario();
@@ -122,17 +120,14 @@ public class Dnrpa {
         pmas.setNombre("juan");
         pmas.setDireccion("tapial 555");
         pmas.setLicPropiedad("5555555");
-        Propietario otrop= new Propietario();
+        Propietario otrop = new Propietario();
         otrop.setDni("27565369");
         otrop.setNombre("Leo");
         otrop.setDireccion("tapial 555");
         otrop.setLicPropiedad("5555555");
         c2.setPropietario(otrop);
-        listabeta.put(c2,otrop);
         ca.setPropietario(propietario);
-       listabeta.put(ca,propietario);
         c3.setPropietario(pmas);
-        listabeta.put(c3,pmas);
 
 
         //setear lista conductores
@@ -159,13 +154,8 @@ public class Dnrpa {
         //System.out.println("lista "+registro.verElementosRegistrados());
         //agregar registro a lista registrosSeccionales
         registrosSeccionales.add(registro);
-        Camion c= new Camion();
+        Camion c = new Camion();
 
-
-        /*
-        armar lista de propietarios (personas)
-        recorrer for registors seccionales automotores
-         */
 
         Scanner sc = new Scanner(System.in);
         int op = 0;
@@ -173,22 +163,34 @@ public class Dnrpa {
             System.out.println("Bienvenido a la DNRPA, ingrese la opción correspondiente");
             System.out.println("1-dar de alta automotor");
             System.out.println("2-cambiar de propietario ");
-            System.out.println("3-");
+            System.out.println("3-ver lista  total de autos");
+            System.out.println("4-ver lista de propietarios de camiones");
+            System.out.println( "5-ver fecha de registro de alta ");
             System.out.println("0- salir");
-            op=sc.nextInt();
-           /* switch (op)
-                case 1: break;
-                case 2: break;
-                case 3: break;;
+            op = sc.nextInt();
+            switch (op) {
+                case 1:
+                    registro.agregarARegistro();
+                    break;
+                case 2:
+                    registro.modificarElementoRegistrado();
+                    break;
+                case 3:
+                    registro.ListarAutos(automotores);
+                    break;
+                case 4:
+                    registro.listarPropietarios();
+                    break;
+                case 5:
+                    break;
+            }
+        } while (op != 0);
 
-            */
-
-        }while (op!=0);
-
+    }
+}
 
 
 
-          }
 
-     }
+
 

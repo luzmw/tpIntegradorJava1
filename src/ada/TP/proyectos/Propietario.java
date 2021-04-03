@@ -1,8 +1,10 @@
 package ada.TP.proyectos;
 
+import java.util.Scanner;
+
 public class Propietario extends Persona implements Registrable {
     private String licPropiedad;
-
+    Scanner scanner= new Scanner(System.in);
 
     public Propietario(String nombre, String direccion, String dni, String licPropiedad) {
         super(nombre, direccion, dni);
@@ -37,7 +39,18 @@ public class Propietario extends Persona implements Registrable {
 
     @Override
     public void agregarARegistro() {
-
+        System.out.println("ingrese el nombre del propietario");
+        String nombre= scanner.nextLine();
+        this.setNombre(nombre);
+        System.out.println("Ingrese el dni del propietario");
+        String dni = scanner.nextLine();
+        this.setDni(dni);
+        System.out.println("Ingrese dirección");
+        String direccion = scanner.nextLine();
+        this.setDireccion(direccion);
+        System.out.println("nro de lic de propiedad");
+        String licprop = scanner.nextLine();
+        this.setLicPropiedad(licprop);
     }
 
     @Override
