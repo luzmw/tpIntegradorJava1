@@ -1,6 +1,8 @@
 package ada.TP.proyectos;
 
 import java.sql.SQLOutput;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,13 +10,13 @@ import java.util.Scanner;
 
 public class  Registro {
     private List<Registrable> automotores;
-    private String seccional;
+    private int seccional; //nro de seccional
     Scanner sc = new Scanner(System.in);
     //Lista de fechas de alta
     // fechas de cambio de propietario
     //alta de vehiculos con la nueva  patente?
 
-    public Registro(List<Registrable> automotores, String seccional) {
+    public Registro(List<Registrable> automotores, int seccional) {
         this.automotores = new ArrayList<>();
         this.seccional = seccional;
     }
@@ -35,11 +37,11 @@ public class  Registro {
         this.automotores = automotores;
     }
 
-    public String getSeccional() {
+    public int getSeccional() {
         return seccional;
     }
 
-    public void setSeccional(String seccional) {
+    public void setSeccional(int seccional) {
         seccional = seccional;
     }
 
@@ -51,8 +53,22 @@ public class  Registro {
 
 
    public void agregarARegistro() {
+       Registro registro = new Registro();
+       System.out.println("Ingrese el numero de seccional; 1- norte 2- sur 3 este 4- oeste");
+       //TODO switch de seccionales
+       //setear lista de automotores
+       int seccional= Integer.parseInt(sc.nextLine());
+       registro.setSeccional(seccional);
+
+       //crear automotor
        Automotor a = new Automotor();
        a.agregarARegistro();
+       registro.setAutomotores(automotores);
+
+       List<Registro> registrosSeccionales=  new ArrayList<>();
+       registrosSeccionales.add(registro);
+
+
    }
 
 
@@ -100,14 +116,37 @@ public class  Registro {
 
 
     public void modificarElementoRegistrado() {
+        System.out.println("Ingrese la fecha del último alta del vehículo ");
+        System.out.println("Ingrese año");
+        int anioDeAlta= sc.nextInt();
+
+        System.out.println("Ingrese mes");
+        int mes = sc.nextInt();
+
+        System.out.println("Ingrese día");
+        int dia = sc.nextInt();
+        LocalDate ultimoAlta= LocalDate.of(anioDeAlta, mes, dia);
+
+        LocalDate nuevaAlta =LocalDate.now();
+        long tiempoDesdeElAlta= Duration.between(nuevaAlta,ultimoAlta).toDays();
+        if (tiempoDesdeElAlta >=365 ){// anio bisiesto?
+            // se puede cambiar de propietario
+        }else {
+            System.out.println("no puede cambiar de propietario faltan "+ tiempoDesdeElAlta);
+        }
         Registro registro = new Registro();
         List<Registrable> registrados = registro.getAutomotores();
         Registrable r = registrados.get(0);
+
         if (r.getClass().getSimpleName().equals("Propietario")) {
-            //modificar nombre y asignar patente
+            //modificar nombre y cambiar fecha de alta  asignar patente
         }
         //  registrados.set(r, registrable);
     }
+
+    public void consultarFechaDeAlta() {
+    }
 }
+
 
 

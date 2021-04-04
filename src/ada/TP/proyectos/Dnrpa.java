@@ -147,7 +147,7 @@ public class Dnrpa {
         Registro registro = new Registro();
         //setear lista de automotores
         registro.setAutomotores(automotores);
-        registro.setSeccional("carapachay");
+        registro.setSeccional(2);
         System.out.println(registro.listarPropietarios());
         System.out.println(registro.ListarAutos(automotores));
 
@@ -182,6 +182,7 @@ public class Dnrpa {
                     registro.listarPropietarios();
                     break;
                 case 5:
+                    registro.consultarFechaDeAlta();
                     break;
             }
         } while (op != 0);
