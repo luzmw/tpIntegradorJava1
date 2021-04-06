@@ -19,10 +19,6 @@ public class AutoElectrico  extends Automotor implements VehiculoElectrico, Regi
 
     }
 
-    @Override
-    public void asignarLicencia() {
-
-    }
 
     @Override
     public void asignarPatente() {

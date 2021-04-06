@@ -17,17 +17,14 @@ public class Utilitario extends  Automotor implements Registrable, VehiculoAComb
 
     @Override
     public void asignarDiaDeAlta() {
-
+        super.asignarDiaDeAlta();
     }
 
-    @Override
-    public void asignarLicencia() {
 
-    }
 
     @Override
     public void asignarPatente() {
-
+        super.asignarPatente();
     }
 
     @Override

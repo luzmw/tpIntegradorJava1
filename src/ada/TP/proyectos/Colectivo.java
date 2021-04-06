@@ -30,10 +30,7 @@ public class Colectivo  extends  Automotor implements  VehiculoACombustion, Regi
         super.asignarDiaDeAlta();
     }
 
-    @Override
-    public void asignarLicencia() {
-        super.asignarLicencia();
-    }
+
 
     @Override
     public void asignarPatente() {

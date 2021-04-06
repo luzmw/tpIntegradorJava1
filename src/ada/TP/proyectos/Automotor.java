@@ -1,14 +1,13 @@
 package ada.TP.proyectos;
 
+import java.sql.SQLOutput;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Automotor implements Registrable {
     private Propietario propietario;
-    private List<Conductor> conductoresAutorizados;
+    private List<Conductor> conductoresAutorizados;//todo linkedlist
     protected TipoDeUso tipoDeUso;
     protected String patente;
     protected LocalDate fechaDeAlta;
@@ -81,53 +80,46 @@ public class Automotor implements Registrable {
 
         LocalDate fechaDeAlta = LocalDate.of(anio, mes, dia);
 
-        this.setFechaDeAlta(fechaDeAlta);
 
         // nuevo alta
         }
 
 
-    @Override
-    public void asignarLicencia() {
 
-    }
 
-    //TODO RANDOM
+
     @Override
     public void asignarPatente() {
-        /*
-        [17:40, 23/3/2021] Jazmin java: private String generarPatenteRandomNueva() {
-        String numeros = "";
-        String letrasInicio = "";
-        String letrasFin ="";
+            String letras = "";
+           String numeros = "";
+            String letras2 = "";
+            String patente="";
 
-        for(int i = 1; i <= 3; i++) {
-            int n = (int)(Math.random()*9+0);
-            numeros = n+numeros;
-            int l = (int)(Math.random()*(90-65+1)+65);
-            letrasInicio = (char)l + letrasInicio;
-            l = (int)(Math.random()*(90-65+1)+65);
-            letrasFin = (char)l + letrasFin;
+            for (int i = 1; i <= 2; i++) {
+                int codigoAscii = (int) Math.floor(Math.random() * (122 - 97) + 97);
+                letras = letras + (char) codigoAscii;
+            }
+            String letrasInicio = letras.toUpperCase();
+
+        for (int i = 1; i <= 3; i++) {
+            int num = (int) (Math.random()*9+0);
+            numeros= num + numeros;
+          }
+        for (int i = 1; i <= 2; i++) {
+            int codigoAscii = (int) Math.floor(Math.random() * (122 - 97) + 97);
+            letras2 = letras2 + (char) codigoAscii;
         }
+        String letrasfinal = letras.toUpperCase();
 
-        patente = letrasInicio.substring(0,2)+numeros+letrasFin.substring(0,2);
-        return patente;
-    }
-[17:40, 23/3/2021] Jazmin java: Luz, aca la info de la patente
-[17:40, 23/3/2021] Jazmin java: genero numeros random del 0 al 9
-[17:40, 23/3/2021] Jazmin java: algunos los voy concatenando como numeros y otros los voy concatenando como letras mayusculas
-[17:41, 23/3/2021] Jazmin java: despues armo la patente
-[17:42, 23/3/2021] Jazmin java: patente = letrasInicio.substring(0,2)+numeros+letrasFin.substring(0,2);
-Aca vas a ver que de las cadenas de letras solo tomo dos letras con un substring porque hago todo con un ciclo for que da tres vueltas, entonces me saca de mas
-[17:45, 23/3/2021] Jazmin java: int l = (int)(Math.random()*(90-65+1)+65);
-            letrasInicio = (char)l + letrasInicio;
-aca tomo un numero random del 65 al 90 porque cuando lo casteo a CHAR se vuelve una letra mayuscula de la A a la Z
-[17:46, 23/3/2021] Luz☀️: aah weee
+        patente = letrasInicio+numeros+letrasfinal;
+        HashSet<String> patentesasignadas = new HashSet<>();
+        if (patentesasignadas.add(patente)){
+            System.out.println("se asigno la patente: "+ patente);
 
-dale, no es dificil, tiene un ciclo de repeticion de 3 vueltas, donde se va generando un numero aleatorio del 0 al 9 (que queda como numero) y un aleatorio del 65 al 90 (que casteo con el CHAR a letra mayuscula). En cada vuelta, lo voy concatenando y despues armo la palabra completa
-         */
-
-    }
+        }else{
+            System.out.println("no se udo asignar, intente nuevamente");
+        }
+     }
 
     @Override
     public void agregarARegistro() {
@@ -187,9 +179,28 @@ dale, no es dificil, tiene un ciclo de repeticion de 3 vueltas, donde se va gene
     }
 
     //TODO HERENCIA REVISAR
+    // TODO imprimir fecha y patente
     @Override
     public String verDetalles() {
-        return null;
+       // String Autorizados;
+        String tipoDeUso = this.tipoDeUso.toString();
+        String patente= this.getPatente();
+        String fechaDeAlta= this.getFechaDeAlta().toString();
+        String propietario = this.getPropietario().verDetalles();
+        return patente+fechaDeAlta+propietario;
+    }
+
+    @Override
+    public void modificarItem() {
+        System.out.println("modificar el propietario");
+        propietario.modificarItem();
+
+    }
+
+    public void consultarFechaXPatente(){
+        String patente2 ="";
+
+
     }
 }
 

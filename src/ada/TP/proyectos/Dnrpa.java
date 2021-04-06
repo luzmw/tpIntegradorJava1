@@ -55,9 +55,34 @@ itnstream aleatorio = aleatorio.ints
 public class Dnrpa {
 
     public static void main(String[] args) {
+
+       //TODO borrar prueba
+       /* List<Registrable> automotores= new ArrayList<>();
+        automotores.add(new Auto());
+        automotores.add(new Auto());
+        automotores.add(new Auto());
+
+        automotores.add(new Camion());
+        automotores.add(new Camion());
+        automotores.add(new Camion());
+        automotores.add(new Camion());
+
+        automotores.add(new AutoElectrico());
+        automotores.add(new AutoElectrico());
+        automotores.add(new AutoElectrico());
+        automotores.add(new AutoElectrico());
+
+        automotores.add(new MotoElectrica());
+        automotores.add(new MotoElectrica());
+        automotores.add(new MotoElectrica());
+        automotores.add(new MotoElectrica());
+
+        */
+
+
+
         MotoElectrica me = new MotoElectrica();
         List<Registro> registrosSeccionales = new ArrayList<>();
-        //TODO AgregarAutomotores(new Auto());
         //crear lista de conductores
         List<Conductor> conductores = new ArrayList<>();
 
@@ -95,7 +120,7 @@ public class Dnrpa {
         //setear lista conductores
         auto.setConductoresAutorizados(conductores);
         auto.setCantidadPuertas(5);
-        auto.setTipoDeUsoUso("profesional");
+        auto.setTipoDeUso(TipoDeUso.PARTICULAR);
         auto.setFechaDeAlta(LocalDate.now());
         auto.setPatente("asd653");
         //agregar automotor a lista de automotores
@@ -108,7 +133,7 @@ public class Dnrpa {
         m.setPropietario(propietario);
         //setear lista conductores
         m.setConductoresAutorizados(conductores);
-        m.setTipoDeUsoUso("profesional");
+        m.setTipoDeUso(TipoDeUso.MIXTO);
         m.setFechaDeAlta(LocalDate.now());
         m.setPatente("asd653");
 
@@ -132,7 +157,7 @@ public class Dnrpa {
 
         //setear lista conductores
         ca.setConductoresAutorizados(conductores);
-        ca.setTipoDeUsoUso("profesional");
+        ca.setTipoDeUso(TipoDeUso.PROFESIONAL);
         ca.setFechaDeAlta(LocalDate.now());
         ca.setPatente("asd653");
         ca.setMma(28.5);
@@ -147,7 +172,7 @@ public class Dnrpa {
         Registro registro = new Registro();
         //setear lista de automotores
         registro.setAutomotores(automotores);
-        registro.setSeccional(2);
+        registro.setSeccional(1);
         System.out.println(registro.listarPropietarios());
         System.out.println(registro.ListarAutos(automotores));
 
@@ -182,7 +207,7 @@ public class Dnrpa {
                     registro.listarPropietarios();
                     break;
                 case 5:
-                    registro.consultarFechaDeAlta();
+                   // registro.consultarFechaDeAlta();
                     break;
             }
         } while (op != 0);

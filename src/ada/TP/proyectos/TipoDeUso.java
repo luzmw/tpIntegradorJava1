@@ -1,15 +1,15 @@
 package ada.TP.proyectos;
 
 public enum TipoDeUso {
-    PROFESIONAL ("prof",1),
-    PARTICULAR ("part",2),
-    MIXTO ("m",3),
+    PROFESIONAL (1,"prof"),
+    PARTICULAR (2,"part"),
+    MIXTO (3,"m"),
     ;
     private  String abreviatura;
     private int codigo;
 
 
-    TipoDeUso(int abrev, String abreviatura) {
+    TipoDeUso(int codigo, String abreviatura) {
         this.codigo = codigo;
         this.abreviatura = abreviatura;
     }
@@ -28,6 +28,6 @@ public enum TipoDeUso {
 
     @Override
     public String toString() {
-        return super.toString() System.out.println("tipo de uso: "+ abreviatura+" código: "+codigo);;
+        return  "tipo de uso: "+ abreviatura+" código: "+codigo;
     }
 }

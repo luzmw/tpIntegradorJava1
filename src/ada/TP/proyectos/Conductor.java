@@ -31,15 +31,14 @@ public class Conductor extends Persona implements Registrable {
 
     }
 
-    @Override
-    public void asignarLicencia() {
 
-    }
 
     @Override
     public void asignarPatente() {
 
     }
+
+
     //TODO validar
     @Override
     public void agregarARegistro() {
@@ -74,5 +73,8 @@ public class Conductor extends Persona implements Registrable {
         return "nombre: "+nombre+" direccion: "+direccion+ "dni "+dni+"nro licencia "+nroLicenciaConducir;
         }
 
+    @Override
+    public void modificarItem() {
 
+    }
 }

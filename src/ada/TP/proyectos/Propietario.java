@@ -1,5 +1,6 @@
 package ada.TP.proyectos;
 
+import java.util.PropertyPermission;
 import java.util.Scanner;
 
 public class Propietario extends Persona implements Registrable {
@@ -24,11 +25,6 @@ public class Propietario extends Persona implements Registrable {
 
     @Override
     public void asignarDiaDeAlta() {
-
-    }
-
-    @Override
-    public void asignarLicencia() {
 
     }
 
@@ -60,5 +56,14 @@ public class Propietario extends Persona implements Registrable {
         String direccion = super.getDireccion();
         String licpropiedad= this.getLicPropiedad();
         return "datos del propietario: nombre "+nombre+ "  dni  "+dni+" direccion " +direccion+ "nro de lic propietaria"+licpropiedad;
+    }
+
+    @Override
+    public void modificarItem() { //cambia datos de propietario
+        System.out.println("Datos del nuevo propietario");
+        Propietario nuevop = new Propietario();
+        nuevop.agregarARegistro();
+        System.out.println("los datos son"+nuevop.verDetalles());
+
     }
 }

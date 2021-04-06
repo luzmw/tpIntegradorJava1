@@ -42,10 +42,6 @@ public class Camion extends  Automotor implements  Registrable{
 
     }
 
-    @Override
-    public void asignarLicencia() {
-
-    }
 
     @Override
     public void asignarPatente() {

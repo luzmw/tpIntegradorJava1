@@ -28,10 +28,6 @@ public class Moto extends Automotor  implements  VehiculoACombustion, Registrabl
 
     }
 
-    @Override
-    public void asignarLicencia() {
-
-    }
 
     @Override
     public void asignarPatente() {

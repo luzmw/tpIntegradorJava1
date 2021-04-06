@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class Auto extends  Automotor implements Registrable , VehiculoACombustion {
     private Integer cantidadPuertas;
     Scanner scanner = new Scanner(System.in);
-    public Auto() {
-    }
+
+    public Auto() { }
 
     public Auto(Propietario propietario, Integer cantidadPuertas) {
         super(propietario);
@@ -28,16 +28,13 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
 
     @Override
     public void asignarDiaDeAlta() {
-
+        super.asignarDiaDeAlta();
     }
 
-    @Override
-    public void asignarLicencia() {
-
-    }
 
     @Override
     public void asignarPatente() {
+        super.asignarPatente();
 
     }
 
@@ -54,8 +51,10 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
         //tipo de uso
         int op =0;
         do {
-        System.out.println("indique el tipo de uso : 1 profesional, 2 particular, 3 mixto");
-        switch (op){
+            System.out.println("indique el tipo de uso : 1 profesional, 2 particular, 3 mixto ");
+            op= scanner.nextInt();
+
+            switch (op){
             case 1: a.setTipoDeUso(TipoDeUso.PROFESIONAL);
             break;
             case 2: a.setTipoDeUso(TipoDeUso.PARTICULAR);
@@ -63,15 +62,16 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
             case 3: a.setTipoDeUso(TipoDeUso.MIXTO);
         }
         }while (op!=0);
+        System.out.println("tipo de uso ");
 
 
         //datos propietario
-        System.out.println("Nombre del propietario");
+        System.out.println("Datos del propietario");
         p.agregarARegistro();
         a.setPropietario(p);
 
         //asignar patenta y fecha de alta
-        System.out.println("Ingrese el año en curso");
+        /*System.out.println("Ingrese el año en curso");
         int anio =Integer.parseInt(scanner.nextLine());
 
         System.out.println("Ingrese el mes en curso (con números");
@@ -83,7 +83,16 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
         LocalDate fechaDeAlta=LocalDate.of(anio, mes, dia);
 
         a.setFechaDeAlta(fechaDeAlta);
-      System.out.println("el alta es"+ a.getFechaDeAlta().toString());
+
+         */
+        a.asignarDiaDeAlta();
+        a.setFechaDeAlta(super.getFechaDeAlta());
+        System.out.println("se asigno fecha dde alta : ");
+
+      //asignar patente
+        a.asignarPatente();
+        a.setPatente(super.getPatente());
+        System.out.println("se asignó la patente : "+ patente);
 
 
         //boolean o if tiene conductores
@@ -94,7 +103,7 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
             autorizados.add(caut);
 
             System.out.println("quiere agregar otro conductor? 1-si 0- no");
-            op= Integer.parseInt(scanner.nextLine());
+            op= scanner.nextInt();
         }while (op!=0);
         a.setConductoresAutorizados(autorizados);
 
@@ -106,12 +115,18 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
     @Override
     public void indicarlitrosNafta() {
 
-    }
-//TODO mostrar objeto
+   }
+
     @Override
+    public String verDetalles() {
+
+        return super.verDetalles()+ this.getCantidadPuertas();
+    }
+
+   /* @Override
 
     public String verDetalles() {
-        String fechaAlta = super.getFechaDeAlta().toString();
+      /*  String fechaAlta = super.getFechaDeAlta().toString();
         //patente
         String autorizados = "";
         String propietario= super.getPropietario().verDetalles();
@@ -120,8 +135,13 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
             // c.verDetalles() // tenés que completar este método
             autorizados += c.getNroLicenciaConducir()+" "+c.verDetalles();
         }
+
+
         return "el auto tiene  " + cantidadPuertas+ " puertas, fecha de alta : " + fechaAlta+ " - autorizados: " +autorizados
                 +" propietario: "+propietario+ "patente: "+"tipo de uso : "+tipoDeUso;
     }
+
+    */
+
 }
 

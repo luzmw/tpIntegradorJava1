@@ -24,10 +24,6 @@ public class MotoElectrica extends Automotor implements VehiculoElectrico, Regis
 
     }
 
-    @Override
-    public void asignarLicencia() {
-
-    }
 
     @Override
     public void asignarPatente() {
