@@ -52,7 +52,7 @@ itnstream aleatorio = aleatorio.ints
 
 
 
-public class Dnrpa {
+public class Main {
 
     public static void main(String[] args) {
 

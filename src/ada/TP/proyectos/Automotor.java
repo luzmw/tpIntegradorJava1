@@ -4,6 +4,7 @@ import java.sql.SQLOutput;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Automotor implements Registrable {
@@ -213,17 +214,19 @@ public class Automotor implements Registrable {
         LocalDate ultimoAlta = LocalDate.of(anioDeAlta, mes, dia);
 
         LocalDate nuevaAlta = LocalDate.now();
-        long tiempoDesdeElAlta = Duration.between(nuevaAlta, ultimoAlta).toDays();
+        long tiempoDesdeElAlta = ChronoUnit.YEARS.between(ultimoAlta, nuevaAlta);
         return tiempoDesdeElAlta;
     }
 
 
         
     public void cambiarDePropietario(LocalDate nuevoAlta ,Propietario nuevoProp){
-       if (consultarTiempoDesdePrimerAlta() >=1) {
+       long tiempoDesdeElAlta = this.consultarTiempoDesdePrimerAlta();
+        if (tiempoDesdeElAlta >=1) {
            nuevoAlta = LocalDate.now();
            this.asignarDiaDeAlta();
            this.setPropietario(nuevoProp);
+            System.out.println(" es el propietario "+ this.getPropietario());
        }else{
            System.out.println("no está permitido el cambio de propietario");
        }
