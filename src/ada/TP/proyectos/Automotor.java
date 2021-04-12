@@ -171,7 +171,6 @@ public class Automotor implements Registrable {
         this.tipoDeUso = tipoDeUso;
     }
 
-    //TODO HERENCIA REVISAR
 
     @Override
     public String verDetalles() {

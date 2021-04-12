@@ -141,16 +141,18 @@ public class  Registro {
         return autos;
     }
 
-    public void consultarFechaXPatente(String patente, LocalDate fechaDeAlta, HashMap<String ,LocalDate> patentesYFechas) {
+   /* public void consultarFechaXPatente(String patente) {
 
 
         for (Registrable aut : automotores)
-            if (automotor.getPatente.equals(patente)) {
+            if (aut.getPatente.equals(patente)) {
                 return aut.verFechaDeAlta();
             } else {
                 return null;
             }
         }
+
+    */
 
 
 
