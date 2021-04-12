@@ -39,38 +39,37 @@ public class Camion extends  Automotor implements  Registrable{
 
     @Override
     public void asignarDiaDeAlta() {
-
+        super.asignarDiaDeAlta();
     }
-
 
     @Override
     public void asignarPatente() {
-
+        super.asignarPatente();
     }
-//TODO VALIDAR Y AGREGAR SI DESEA AGREGAR MAS CAMIONES y indicar nafta
+
+    //TODO VALIDAR Y AGREGAR SI DESEA AGREGAR MAS CAMIONES y indicar nafta
     @Override
     public void agregarARegistro() {
-        Camion c = new Camion();
         Propietario p = new Propietario();
         Conductor caut = new Conductor();
         List<Conductor> autorizados = new ArrayList<>();
 
         System.out.println("Indique la tara ");
         tara= Double.parseDouble(scanner.nextLine());
-        c.setTara(tara);
+        this.setTara(tara);
 
         System.out.println("Indique mma");
         mma=Double.parseDouble(scanner.nextLine());
-        c.setMma(mma);
+        this.setMma(mma);
 
         //datos propietario
         System.out.println("Nombre del propietario");
         p.agregarARegistro();
-        c.setPropietario(p);
+        this.setPropietario(p);
 
         //asignar patenta y fecha de alta
         LocalDate fechaDeAlta= LocalDate.now();
-        c.setFechaDeAlta(fechaDeAlta);
+        this.setFechaDeAlta(fechaDeAlta);
 
         //boolean o if tiene conductores
         int op = 0;
@@ -82,10 +81,10 @@ public class Camion extends  Automotor implements  Registrable{
             System.out.println("quiere agregar otro conductor? 1-si 0- no");
             op= Integer.parseInt(scanner.nextLine());
         }while (op!=0);
-        c.setConductoresAutorizados(autorizados);
+        this.setConductoresAutorizados(autorizados);
 
 
-        System.out.println("se agrego "+c.verDetalles());
+        System.out.println("se agrego "+this.verDetalles());
 
 
     }

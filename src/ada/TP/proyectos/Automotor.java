@@ -3,6 +3,7 @@ package ada.TP.proyectos;
 import java.sql.SQLOutput;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Automotor implements Registrable {
@@ -79,11 +80,8 @@ public class Automotor implements Registrable {
         int dia = scanner.nextInt();
 
         LocalDate fechaDeAlta = LocalDate.of(anio, mes, dia);
-
-
-        // nuevo alta
-        }
-
+        setFechaDeAlta(fechaDeAlta);
+    }
 
 
 
@@ -109,7 +107,7 @@ public class Automotor implements Registrable {
             int codigoAscii = (int) Math.floor(Math.random() * (122 - 97) + 97);
             letras2 = letras2 + (char) codigoAscii;
         }
-        String letrasfinal = letras.toUpperCase();
+        String letrasfinal = letras2.toUpperCase();
 
         patente = letrasInicio+numeros+letrasfinal;
         HashSet<String> patentesasignadas = new HashSet<>();
@@ -119,8 +117,9 @@ public class Automotor implements Registrable {
         }else{
             System.out.println("no se udo asignar, intente nuevamente");
         }
+        setPatente(patente);
      }
-
+//TODO enum tipodeuso = Enum.valueof(tipouso.class particular) =
     @Override
     public void agregarARegistro() {
         List<Registrable> automotores= new ArrayList<>();
@@ -168,55 +167,72 @@ public class Automotor implements Registrable {
         } while (op != 0);
     }
 
-    //datos propietario
-
-
-    //asignar patenta y fecha de alta
-
-
     public void setTipoDeUso(TipoDeUso tipoDeUso) {
         this.tipoDeUso = tipoDeUso;
     }
 
     //TODO HERENCIA REVISAR
-    // TODO imprimir fecha y patente
+
     @Override
     public String verDetalles() {
-       // String Autorizados;
-        String tipoDeUso = this.tipoDeUso.toString();
+        String autorizados= "";
+
+        for(Conductor c :conductoresAutorizados){
+            autorizados += " "+c.verDetalles();
+        }
+
+        String tipoDeUso = this.tipoDeUso.name();
         String patente= this.getPatente();
-        String fechaDeAlta= this.getFechaDeAlta().toString();
+        String fecha= fechaDeAlta.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String propietario = this.getPropietario().verDetalles();
-        return patente+fechaDeAlta+propietario;
+
+        return "Datos vehículo: patente "+patente+" - fecha de alta : "+fecha+ "-  Uso :"+ tipoDeUso+" -"
+                +propietario+ "- conductores autorizados: "+ autorizados;
+    }
+
+    @Override
+    public String verFechaDeAlta() {
+      String  fechaDeAlta = this.getFechaDeAlta().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return fechaDeAlta;
     }
 
     @Override
     public void modificarItem() {
         System.out.println("modificar el propietario");
         propietario.modificarItem();
+    }
+    public Long consultarTiempoDesdePrimerAlta() {// Todo por patente
+        System.out.println("Ingrese la fecha del último alta del vehículo ");
+        System.out.println("Ingrese año");
+        int anioDeAlta = scanner.nextInt();
 
+        System.out.println("Ingrese mes");
+        int mes = scanner.nextInt();
+
+        System.out.println("Ingrese día");
+        int dia = scanner.nextInt();
+        LocalDate ultimoAlta = LocalDate.of(anioDeAlta, mes, dia);
+
+        LocalDate nuevaAlta = LocalDate.now();
+        long tiempoDesdeElAlta = Duration.between(nuevaAlta, ultimoAlta).toDays();
+        return tiempoDesdeElAlta;
     }
 
-    public void consultarFechaXPatente(){
-        String patente2 ="";
 
-
-    }
+        
+    public void cambiarDePropietario(LocalDate nuevoAlta ,Propietario nuevoProp){
+       if (consultarTiempoDesdePrimerAlta() >=1) {
+           nuevoAlta = LocalDate.now();
+           this.asignarDiaDeAlta();
+           this.setPropietario(nuevoProp);
+       }else{
+           System.out.println("no está permitido el cambio de propietario");
+       }
 }
+    }
 
 
-           /* @Override
-            public String verDetalles{
-                String Autorizados;
-                String tipoDeUso = this.tipoDeUso.toString();
-                String patente;
-                String fechaDeAlta;
-                String propietario = this.getPropietario().verDetalles();
 
-                return null;
-            }
-
-            */
 
 
 

@@ -8,9 +8,9 @@ import java.util.*;
 
 public class  Registro {
     private List<Registrable> automotores;
-    private int seccional; //nro de seccional
+    private int seccional;
     Scanner sc = new Scanner(System.in);
-    private HashSet patentes;
+    private HashSet<String> patentesAsignadas;
     //Lista de fechas de alta
     // fechas de cambio de propietario
     //alta de vehiculos con la nueva  patente?
@@ -24,7 +24,6 @@ public class  Registro {
     }
 
     public void agregarAutomotor(Registrable automotor) {
-        List<Registrable> automotores = new ArrayList<>();
         automotores.add(automotor);
     }
 
@@ -41,7 +40,7 @@ public class  Registro {
     }
 
     public void setSeccional(int seccional) {
-        seccional = seccional;
+        this.seccional = seccional;
     }
 
     public void mostrarAutomotores() {
@@ -49,42 +48,52 @@ public class  Registro {
             System.out.println(automotor.verDetalles());
     }
 
+    public HashSet<String> getPatentesAsignadas() {
+        return patentesAsignadas;
+    }
+
+    public void setPatentesAsignadas(HashSet<String> patentesAsignadas) {
+        this.patentesAsignadas = patentesAsignadas;
+    }
+
+    //agregar automotores al registro
+    //como agrego el resitro a una lista de registros=
+    public void agregarARegistro() {
+        String nombreSeccional = "";
+        System.out.println("Ingrese el numero de seccional; 1- norte 2- sur 3 este 4- oeste");
+
+        //setear lista de automotores
+        int seccional = Integer.parseInt(sc.nextLine());
+        switch (seccional) {
+            case 1:
+                nombreSeccional = "norte";
+                break;
+
+            case 2:
+                nombreSeccional = "sur";
+                break;
+
+            case 3:
+                nombreSeccional = "este";
+                break;
+
+            case 4:
+                nombreSeccional = "oeste";
+                break;
+        }
+        this.setSeccional(seccional);
+        System.out.println("Seccional de pertenencia:" + seccional + ": " + nombreSeccional);
+
+        //crear automotor
+        Automotor a = new Automotor();
+        a.agregarARegistro();
+        this.setAutomotores(automotores);
+
+        // crear en el main ? List<Registro> registrosSeccionales=  new ArrayList<>();
+        //  registrosSeccionales.add(registro);
 
 
-   public void agregarARegistro() {
-       Registro registro = new Registro();
-       String nombreSeccional= "";
-       System.out.println("Ingrese el numero de seccional; 1- norte 2- sur 3 este 4- oeste");
-
-       //setear lista de automotores
-       int seccional= Integer.parseInt(sc.nextLine());
-       switch (seccional){
-           case 1: nombreSeccional = "norte";
-           break;
-
-           case 2: nombreSeccional="sur";
-           break;
-
-           case 3: nombreSeccional="este";
-           break;
-
-           case 4: nombreSeccional="oeste";
-           break;
-       }
-       registro.setSeccional(seccional);
-       System.out.println("la seccional "+ seccional+" : "+nombreSeccional);
-
-       //crear automotor
-       Automotor a = new Automotor();
-       a.agregarARegistro();
-       registro.setAutomotores(automotores);
-
-       List<Registro> registrosSeccionales=  new ArrayList<>();
-       registrosSeccionales.add(registro);
-
-
-   }
-
+    }
 
 
     //TODO falta mostrar nombre de seccional
@@ -96,72 +105,52 @@ public class  Registro {
         }
         return automotores;
     }
-    //todo stream?
-    public  String listarPropietarios(){
-       List<Camion> camiones = new ArrayList<>();
-       List<String> propietarios = new ArrayList<>();
 
-        for (Registrable aut :automotores){
-            if (aut instanceof Camion){
+    public String listarPropietariosDeCamiones() {
+        List<Camion> camiones = new ArrayList<>();
+        List<String> propietarios = new ArrayList<>();
+
+        for (Registrable aut : automotores) {
+            if (aut instanceof Camion) {
                 Camion c = (Camion) aut;
                 camiones.add(c);
 
             }
 
         }
-        for (Camion ca: camiones){
-             propietarios.add(ca.getPropietario().getNombre());
+        for (Camion ca : camiones) {
+            propietarios.add(ca.getPropietario().getNombre());
         }
         Collections.sort(propietarios);
-        for (String a :propietarios){
-            System.out.println(a);}
+        for (String a : propietarios) {
+            System.out.println(a);
+        }
         return "";
     }
 
-    public String ListarAutos (List<Registrable> automotores){
-       String autos ="";
-            for (Registrable aut : automotores){
-                if (aut instanceof Auto){
-                    Auto una = (Auto) aut;
-                    autos+= una.verDetalles();
-                }
-            }return autos ;
-        }
+    public String ListarAutos() {
 
+        String autos = "";
+        for (Registrable aut : automotores) {
+            if (aut instanceof Auto) {
+                Auto una = (Auto) aut;
 
-    public void modificarElementoRegistrado() {
-        Automotor aut = new Automotor();
-        System.out.println("Ingrese la fecha del último alta del vehículo ");
-        System.out.println("Ingrese año");
-        int anioDeAlta= sc.nextInt();
-
-        System.out.println("Ingrese mes");
-        int mes = sc.nextInt();
-
-        System.out.println("Ingrese día");
-        int dia = sc.nextInt();
-        LocalDate ultimoAlta= LocalDate.of(anioDeAlta, mes, dia);
-
-        LocalDate nuevaAlta =LocalDate.now();
-        //long tiempoDesdeElAlta= Duration.between(nuevaAlta,ultimoAlta).toDays();
-        if (ChronoUnit.YEARS.between(nuevaAlta,ultimoAlta)>0){
-            System.out.println("Está habilitado el cambio de propietario");
-            aut.modificarItem();
-           /* Registro registro = new Registro();
-            List<Registrable> registrados = registro.getAutomotores();
-            Registrable r = registrados.get(0);
-
-            */
-            /*
-            if (r.getClass().getSimpleName().equals("Propietario")) {
-                Propietario cambioProp = (Propietario) r;
-                cambioProp.modificarItem();
+                autos += aut.verDetalles();
             }
-            //  registrados.set(r, registrable);        }else {
-           // System.out.println("no puede cambiar de propietario espero "+ tiempoDesdeElAlta+ " para la modificación");
         }
+        return autos;
+    }
 
-             */
+    public void consultarFechaXPatente(String patente, LocalDate fechaDeAlta, HashMap<String ,LocalDate> patentesYFechas) {
+
+
+        for (Registrable aut : automotores)
+            if (automotor.getPatente.equals(patente)) {
+                return aut.verFechaDeAlta();
+            } else {
+                return null;
+            }
+        }
 
 
 
@@ -169,8 +158,6 @@ public class  Registro {
 
 
 
-
-    }}
 
 
 

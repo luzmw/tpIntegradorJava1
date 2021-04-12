@@ -56,29 +56,6 @@ public class Dnrpa {
 
     public static void main(String[] args) {
 
-       //TODO borrar prueba
-       /* List<Registrable> automotores= new ArrayList<>();
-        automotores.add(new Auto());
-        automotores.add(new Auto());
-        automotores.add(new Auto());
-
-        automotores.add(new Camion());
-        automotores.add(new Camion());
-        automotores.add(new Camion());
-        automotores.add(new Camion());
-
-        automotores.add(new AutoElectrico());
-        automotores.add(new AutoElectrico());
-        automotores.add(new AutoElectrico());
-        automotores.add(new AutoElectrico());
-
-        automotores.add(new MotoElectrica());
-        automotores.add(new MotoElectrica());
-        automotores.add(new MotoElectrica());
-        automotores.add(new MotoElectrica());
-
-        */
-
 
 
         MotoElectrica me = new MotoElectrica();
@@ -121,10 +98,35 @@ public class Dnrpa {
         auto.setConductoresAutorizados(conductores);
         auto.setCantidadPuertas(5);
         auto.setTipoDeUso(TipoDeUso.PARTICULAR);
-        auto.setFechaDeAlta(LocalDate.now());
+        auto.setFechaDeAlta(LocalDate.of(2021,04,07));
         auto.setPatente("asd653");
         //agregar automotor a lista de automotores
         automotores.add(auto);
+
+        Auto auto2 = new Auto();
+        //setear propietario
+        auto2.setPropietario(propietario);
+        //setear lista conductores
+        auto2.setConductoresAutorizados(conductores);
+        auto.setCantidadPuertas(5);
+        auto2.setTipoDeUso(TipoDeUso.PARTICULAR);
+        auto2.setFechaDeAlta(LocalDate.of(2021,04,07));
+        auto2.setPatente("asd653");
+        //agregar automotor a lista de automotores
+        automotores.add(auto2);
+
+
+        Auto auto3 = new Auto();
+        //setear propietario
+        auto3.setPropietario(propietario);
+        //setear lista conductores
+        auto3.setConductoresAutorizados(conductores);
+        auto3.setCantidadPuertas(5);
+        auto3.setTipoDeUso(TipoDeUso.PARTICULAR);
+        auto3.setFechaDeAlta(LocalDate.of(2021,04,07));
+        auto3.setPatente("asd653");
+        //agregar automotor a lista de automotores
+        automotores.add(auto3);
 
 
         //instanciar automotor
@@ -140,19 +142,52 @@ public class Dnrpa {
         Camion ca = new Camion();
         Camion c2 = new Camion();
         Camion c3 = new Camion();
+
         Propietario pmas = new Propietario();
         pmas.setDni("27565369");
         pmas.setNombre("juan");
         pmas.setDireccion("tapial 555");
         pmas.setLicPropiedad("5555555");
+
         Propietario otrop = new Propietario();
         otrop.setDni("27565369");
         otrop.setNombre("Leo");
         otrop.setDireccion("tapial 555");
         otrop.setLicPropiedad("5555555");
+
+        Propietario otroprop = new Propietario();
+        otroprop.setDni("27565369");
+        otroprop.setNombre("Pipo");
+        otroprop.setDireccion("turdera 555");
+        otroprop.setLicPropiedad("5555555");
+
         c2.setPropietario(otrop);
         ca.setPropietario(propietario);
         c3.setPropietario(pmas);
+
+        c2.setConductoresAutorizados(conductores);
+        c2.setMma(36.63);
+        c2.setTara(96.23);
+        c2.setFechaDeAlta(LocalDate.now());
+        c2.setTipoDeUso(TipoDeUso.PARTICULAR);
+        automotores.add(c2);
+
+
+        c3.setConductoresAutorizados(conductores);
+        c3.setMma(60.55);
+        c3.setTara(69.23);
+        c3.setFechaDeAlta(LocalDate.now());
+        c3.setTipoDeUso(TipoDeUso.MIXTO);
+        automotores.add(c3);
+
+        Camion cam = new Camion();
+        cam.setPropietario(otroprop);
+        cam.setConductoresAutorizados(conductores);
+        cam.setMma(8.22);
+        cam.setTara(78.36);
+        cam.setFechaDeAlta(LocalDate.now());
+        cam.setTipoDeUso(TipoDeUso.PROFESIONAL);
+        automotores.add(cam);
 
 
         //setear lista conductores
@@ -173,15 +208,15 @@ public class Dnrpa {
         //setear lista de automotores
         registro.setAutomotores(automotores);
         registro.setSeccional(1);
-        System.out.println(registro.listarPropietarios());
-        System.out.println(registro.ListarAutos(automotores));
+        System.out.println(registro.listarPropietariosDeCamiones());
+        System.out.println(registro.ListarAutos());
 
         //System.out.println("lista "+registro.verElementosRegistrados());
         //agregar registro a lista registrosSeccionales
         registrosSeccionales.add(registro);
         Camion c = new Camion();
 
-
+        Automotor automotor = new Automotor();
         Scanner sc = new Scanner(System.in);
         int op = 0;
         do {
@@ -190,7 +225,7 @@ public class Dnrpa {
             System.out.println("2-cambiar de propietario ");
             System.out.println("3-ver lista  total de autos");
             System.out.println("4-ver lista de propietarios de camiones");
-            System.out.println( "5-ver fecha de registro de alta ");
+            System.out.println( "5-ver tiempo transcurrido desde el  alta ");
             System.out.println("0- salir");
             op = sc.nextInt();
             switch (op) {
@@ -198,17 +233,17 @@ public class Dnrpa {
                     registro.agregarARegistro();
                     break;
                 case 2:
-                    registro.modificarElementoRegistrado();
-                    break;
+                automotor.cambiarDePropietario(LocalDate.now(), otrop);                    break;
                 case 3:
-                    registro.ListarAutos(automotores);
+                    registro.ListarAutos();
                     break;
                 case 4:
-                    registro.listarPropietarios();
+                    registro.listarPropietariosDeCamiones();
                     break;
                 case 5:
-                   // registro.consultarFechaDeAlta();
+                   automotor.consultarTiempoDesdePrimerAlta();
                     break;
+
             }
         } while (op != 0);
 

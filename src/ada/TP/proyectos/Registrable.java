@@ -1,16 +1,23 @@
 package ada.TP.proyectos;
 
-public interface Registrable {
+import java.time.LocalDate;
 
+public interface Registrable {
     void asignarDiaDeAlta();
 
-   void asignarPatente();
+    void asignarPatente();
 
 
     void agregarARegistro();
 
-    String  verDetalles();
+    String verDetalles();
 
-     void modificarItem();
+    void modificarItem();
+
+    default String verFechaDeAlta(){
+
+        return "LocalDate";
+    }
+
 
 }

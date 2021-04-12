@@ -32,31 +32,28 @@ public class Conductor extends Persona implements Registrable {
     }
 
 
-
     @Override
     public void asignarPatente() {
 
     }
 
-
     //TODO validar
     @Override
     public void agregarARegistro() {
         int op = 0;
-            Conductor c = new Conductor();
 
             System.out.println("ingrese el nombre del conductor autorizado");
             String nombre = scanner.nextLine();
-            c.setNombre(nombre);
+            this.setNombre(nombre);
             System.out.println("Ingrese el dni del conductor autorizado");
             String dni = scanner.nextLine();
-            c.setDni(dni);
+            this.setDni(dni);
             System.out.println("Ingrese dirección");
             String direccion = scanner.nextLine();
-            c.setDireccion(direccion);
+            this.setDireccion(direccion);
             System.out.println("nro de lic de conducir");
             String licconducir = scanner.nextLine();
-            c.setNroLicenciaConducir(nroLicenciaConducir);
+            this.setNroLicenciaConducir(nroLicenciaConducir);
 
 
 
