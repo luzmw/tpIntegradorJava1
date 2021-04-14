@@ -1,9 +1,17 @@
 package ada.TP.proyectos;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class Moto extends Automotor  implements  VehiculoACombustion, Registrable{
     private String tipoMoto;
 
     public Moto() {
+    }
+
+    public Moto(Propietario propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta, String tipoMoto) {
+        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+        this.tipoMoto = tipoMoto;
     }
 
     public Moto(String tipoMoto) {
@@ -19,7 +27,8 @@ public class Moto extends Automotor  implements  VehiculoACombustion, Registrabl
     }
 
     @Override
-    public void indicarlitrosNafta() {
+    public int indicarlitrosNafta() {
+        return this.getLitrosDeNafta();
 
     }
 
@@ -52,5 +61,10 @@ public class Moto extends Automotor  implements  VehiculoACombustion, Registrabl
         }
         return "el auto tiene  " + " puertas, fecha: " + fechaAlta+ " - autorizados: " +propietario;
 
+    }
+
+    @Override
+    public String stringgetPatente() {
+        return super.stringgetPatente();
     }
 }

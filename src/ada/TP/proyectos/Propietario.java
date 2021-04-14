@@ -58,12 +58,10 @@ public class Propietario extends Persona implements Registrable {
         return "datos del propietario: nombre "+nombre+ "  dni  "+dni+" direccion " +direccion+ "nro de lic propietaria"+licpropiedad;
     }
 
-    @Override
-    public void modificarItem() { //cambia datos de propietario
-        System.out.println("Datos del nuevo propietario");
-        Propietario nuevop = new Propietario();
-        nuevop.agregarARegistro();
-        System.out.println("los datos son"+nuevop.verDetalles());
 
+
+    @Override
+    public String stringgetPatente() {
+        return null;
     }
 }

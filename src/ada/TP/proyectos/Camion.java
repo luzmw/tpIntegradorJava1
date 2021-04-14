@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Camion extends  Automotor implements  Registrable{
-
+public class Camion extends  Automotor implements  Registrable , VehiculoACombustion{
     private double tara;
     private double mma;
     Scanner scanner = new Scanner(System.in);
@@ -14,6 +13,10 @@ public class Camion extends  Automotor implements  Registrable{
     public Camion() {
     }
 
+    public Camion(Propietario propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta, double tara) {
+        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+        this.tara = tara;
+    }
 
     public Camion(Propietario propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta, double tara, double mma) {
         super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
@@ -105,4 +108,8 @@ public class Camion extends  Automotor implements  Registrable{
         return "Datos del vehículo Camión: tara  " + tara+ "  mma "+mma+ " puertas, fecha: " + fechaAlta+ " - autorizados: " +propietario;
     }
 
+    @Override
+    public int indicarlitrosNafta() {
+        return super.indicarlitrosNafta();
+    }
 }

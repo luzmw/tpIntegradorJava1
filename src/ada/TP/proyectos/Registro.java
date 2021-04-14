@@ -57,7 +57,7 @@ public class  Registro {
     }
 
     //agregar automotores al registro
-    //como agrego el resitro a una lista de registros=
+    //como agrego el resitro a una lista de registros= dnrpa
     public void agregarARegistro() {
         String nombreSeccional = "";
         System.out.println("Ingrese el numero de seccional; 1- norte 2- sur 3 este 4- oeste");
@@ -84,7 +84,7 @@ public class  Registro {
         this.setSeccional(seccional);
         System.out.println("Seccional de pertenencia:" + seccional + ": " + nombreSeccional);
 
-        //crear automotor
+       //crear automotor
         Automotor a = new Automotor();
         a.agregarARegistro();
         this.setAutomotores(automotores);
@@ -121,6 +121,7 @@ public class  Registro {
         for (Camion ca : camiones) {
             propietarios.add(ca.getPropietario().getNombre());
         }
+       // TODO no ordena
         Collections.sort(propietarios);
         for (String a : propietarios) {
             System.out.println(a);
@@ -141,20 +142,15 @@ public class  Registro {
         return autos;
     }
 
-   /* public void consultarFechaXPatente(String patente) {
 
+    public void consultarFechaXPatente(String patente, List<Registrable> automotores) {
 
         for (Registrable aut : automotores)
-            if (aut.getPatente.equals(patente)) {
-                return aut.verFechaDeAlta();
+            if (aut.stringgetPatente().equals(patente)) {
+                System.out.println(aut.verFechaDeAlta());
             } else {
-                return null;
-            }
+                System.out.println("");            }
         }
-
-    */
-
-
 
     }
 

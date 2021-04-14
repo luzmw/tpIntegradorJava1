@@ -59,7 +59,6 @@ public class Main {
 
 
         MotoElectrica me = new MotoElectrica();
-        List<Registro> registrosSeccionales = new ArrayList<>();
         //crear lista de conductores
         List<Conductor> conductores = new ArrayList<>();
 
@@ -208,12 +207,15 @@ public class Main {
         //setear lista de automotores
         registro.setAutomotores(automotores);
         registro.setSeccional(1);
+       Dnrpa dnrpa = new Dnrpa();
+        List<Registro> registrosSeccionales= new ArrayList<>();
+       registrosSeccionales.add(registro);
+        dnrpa.setRegistros(registrosSeccionales);
         System.out.println(registro.listarPropietariosDeCamiones());
         System.out.println(registro.ListarAutos());
 
         //System.out.println("lista "+registro.verElementosRegistrados());
         //agregar registro a lista registrosSeccionales
-        registrosSeccionales.add(registro);
         Camion c = new Camion();
 
         Automotor automotor = new Automotor();
@@ -235,7 +237,7 @@ public class Main {
                 case 2:
                 automotor.cambiarDePropietario(LocalDate.now(), otrop);                    break;
                 case 3:
-                    registro.ListarAutos();
+                    System.out.println(dnrpa.listarTodosLosAutos());
                     break;
                 case 4:
                     registro.listarPropietariosDeCamiones();
@@ -243,6 +245,8 @@ public class Main {
                 case 5:
                    automotor.consultarTiempoDesdePrimerAlta();
                     break;
+                case 6: registro.consultarFechaXPatente("acs2365sdf",automotores);
+                break;
 
             }
         } while (op != 0);

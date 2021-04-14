@@ -7,9 +7,13 @@ import java.util.List;
 public class Utilitario extends  Automotor implements Registrable, VehiculoACombustion{
 
 
+    public Utilitario(Propietario propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta) {
+        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+    }
 
     public Utilitario() {
     }
+
 
     public Utilitario(Propietario propietario) {
         super(propietario);
@@ -70,7 +74,7 @@ public class Utilitario extends  Automotor implements Registrable, VehiculoAComb
 
 
     @Override
-    public void indicarlitrosNafta() {
-
+    public int indicarlitrosNafta() {
+        return this.getLitrosDeNafta();
     }
 }

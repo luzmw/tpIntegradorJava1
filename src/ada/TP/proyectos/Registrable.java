@@ -12,12 +12,12 @@ public interface Registrable {
 
     String verDetalles();
 
-    void modificarItem();
 
     default String verFechaDeAlta(){
 
         return "LocalDate";
     }
+     String stringgetPatente();
 
 
 }

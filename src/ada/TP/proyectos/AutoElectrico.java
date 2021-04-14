@@ -9,9 +9,13 @@ public class AutoElectrico  extends Automotor implements VehiculoElectrico, Regi
     public AutoElectrico() {
     }
 
+    public AutoElectrico(Propietario propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta) {
+        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+    }
+
     @Override
-    public double indicarVoltaje() {
-        return 0;
+    public String indicarVoltaje() {
+        return super.indicarVoltaje();
     }
 
     @Override

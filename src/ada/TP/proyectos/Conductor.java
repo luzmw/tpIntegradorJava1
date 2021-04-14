@@ -70,8 +70,14 @@ public class Conductor extends Persona implements Registrable {
         return "nombre: "+nombre+" direccion: "+direccion+ "dni "+dni+"nro licencia "+nroLicenciaConducir;
         }
 
-    @Override
-    public void modificarItem() {
 
+
+    public Conductor(String nombre, String direccion, String dni) {
+        super(nombre, direccion, dni);
+    }
+
+    @Override
+    public String stringgetPatente() {
+        return null;
     }
 }

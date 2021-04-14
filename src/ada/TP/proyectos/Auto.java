@@ -8,10 +8,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Auto extends  Automotor implements Registrable , VehiculoACombustion {
+    //TODO automotor private Int litrosDenafta;
     private Integer cantidadPuertas;
     Scanner scanner = new Scanner(System.in);
 
     public Auto() { }
+
+    public Auto(Propietario propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta, Integer cantidadPuertas) {
+        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+        this.cantidadPuertas = cantidadPuertas;
+    }
 
     public Auto(Propietario propietario, Integer cantidadPuertas) {
         super(propietario);
@@ -97,9 +103,9 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
     }
 
     @Override
-    public void indicarlitrosNafta() {
-
-   }
+    public int indicarlitrosNafta() {
+        return super.indicarlitrosNafta();
+    }
 
     @Override
     public String verDetalles() {

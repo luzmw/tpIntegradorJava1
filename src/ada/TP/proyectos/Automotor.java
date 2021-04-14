@@ -7,12 +7,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Automotor implements Registrable {
+public class Automotor implements Registrable , VehiculoACombustion, VehiculoElectrico {
     private Propietario propietario;
     private List<Conductor> conductoresAutorizados;//todo linkedlist
     protected TipoDeUso tipoDeUso;
     protected String patente;
     protected LocalDate fechaDeAlta;
+    private String voltaje;
+    private int  litrosDeNafta;
+    // TODO private LocalDate fechaNuevaAlta;
     Scanner scanner = new Scanner(System.in);
 
 
@@ -46,6 +49,22 @@ public class Automotor implements Registrable {
 
     public void setConductoresAutorizados(List<Conductor> conductoresAutorizados) {
         this.conductoresAutorizados = conductoresAutorizados;
+    }
+
+    public String getVoltaje() {
+        return voltaje;
+    }
+
+    public void setVoltaje(String voltaje) {
+        this.voltaje = voltaje;
+    }
+
+    public int getLitrosDeNafta() {
+        return litrosDeNafta;
+    }
+
+    public void setLitrosDeNafta(int litrosDeNafta) {
+        this.litrosDeNafta = litrosDeNafta;
     }
 
     public TipoDeUso getTipoDeUso() {
@@ -196,11 +215,7 @@ public class Automotor implements Registrable {
         return fechaDeAlta;
     }
 
-    @Override
-    public void modificarItem() {
-        System.out.println("modificar el propietario");
-        propietario.modificarItem();
-    }
+
     public Long consultarTiempoDesdePrimerAlta() {// Todo por patente
         System.out.println("Ingrese la fecha del último alta del vehículo ");
         System.out.println("Ingrese año");
@@ -218,20 +233,35 @@ public class Automotor implements Registrable {
         return tiempoDesdeElAlta;
     }
 
+    @Override
+    public String stringgetPatente() {
+        return patente;
+    }
 
-        
-    public void cambiarDePropietario(LocalDate nuevoAlta ,Propietario nuevoProp){
+    public void cambiarDePropietario(LocalDate nuevoAlta , Propietario nuevoProp){
        long tiempoDesdeElAlta = this.consultarTiempoDesdePrimerAlta();
         if (tiempoDesdeElAlta >=1) {
            nuevoAlta = LocalDate.now();
+           // TODO fechaNuevaAlta= LocalDate.now();
+            //TODO hashseet con todas las fechas nuevas
            this.asignarDiaDeAlta();
            this.setPropietario(nuevoProp);
-            System.out.println(" es el propietario "+ this.getPropietario());
+           System.out.println(this.getPropietario().verDetalles());
        }else{
            System.out.println("no está permitido el cambio de propietario");
        }
 }
+
+    @Override
+    public String indicarVoltaje() {
+        return this.getVoltaje();
     }
+
+    @Override
+    public int indicarlitrosNafta() {
+        return this.getLitrosDeNafta();
+    }
+}
 
 
 

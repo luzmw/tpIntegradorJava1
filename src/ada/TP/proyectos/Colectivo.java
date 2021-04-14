@@ -12,6 +12,11 @@ public class Colectivo  extends  Automotor implements  VehiculoACombustion, Regi
     public Colectivo() {
     }
 
+    public Colectivo(Propietario propietario, List<Conductor> conductoresAutorizados, TipoDeUso tipoDeUso, String patente, LocalDate fechaDeAlta, Integer cantidadAsientos) {
+        super(propietario, conductoresAutorizados, tipoDeUso, patente, fechaDeAlta);
+        this.cantidadAsientos = cantidadAsientos;
+    }
+
     public Integer getCantidadAsientos() {
         return cantidadAsientos;
     }
@@ -21,7 +26,8 @@ public class Colectivo  extends  Automotor implements  VehiculoACombustion, Regi
     }
 
     @Override
-    public void indicarlitrosNafta() {
+    public int indicarlitrosNafta() {
+        return this.getLitrosDeNafta();
 
     }
 
