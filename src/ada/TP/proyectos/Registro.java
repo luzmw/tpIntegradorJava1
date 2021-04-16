@@ -23,7 +23,7 @@ public class  Registro {
     public Registro() {
     }
 
-    public void agregarAutomotor(Registrable automotor) {
+    public void agregarAUtomotores(Registrable automotor) {
         automotores.add(automotor);
     }
 
@@ -84,13 +84,10 @@ public class  Registro {
         this.setSeccional(seccional);
         System.out.println("Seccional de pertenencia:" + seccional + ": " + nombreSeccional);
 
-       //crear automotor
+        //crear automotor
         Automotor a = new Automotor();
         a.agregarARegistro();
         this.setAutomotores(automotores);
-
-        // crear en el main ? List<Registro> registrosSeccionales=  new ArrayList<>();
-        //  registrosSeccionales.add(registro);
 
 
     }
@@ -106,9 +103,10 @@ public class  Registro {
         return automotores;
     }
 
+
     public String listarPropietariosDeCamiones() {
         List<Camion> camiones = new ArrayList<>();
-        List<String> propietarios = new ArrayList<>();
+        List<Propietario> propietarios = new ArrayList<>();
 
         for (Registrable aut : automotores) {
             if (aut instanceof Camion) {
@@ -119,15 +117,18 @@ public class  Registro {
 
         }
         for (Camion ca : camiones) {
-            propietarios.add(ca.getPropietario().getNombre());
+            propietarios.add(ca.getPropietario());
         }
-       // TODO no ordena
-        Collections.sort(propietarios);
-        for (String a : propietarios) {
-            System.out.println(a);
+        Comparator<Propietario> comparator = (s1, s2) -> s1.getNombre().compareTo(s2.getNombre());
+        propietarios.sort(comparator);
+
+
+        for (Propietario a : propietarios) {
+            System.out.println(a.getNombre());
         }
         return "";
     }
+
 
     public String ListarAutos() {
 
@@ -142,17 +143,22 @@ public class  Registro {
         return autos;
     }
 
-
     public void consultarFechaXPatente(String patente, List<Registrable> automotores) {
 
-        for (Registrable aut : automotores)
-            if (aut.stringgetPatente().equals(patente)) {
-                System.out.println(aut.verFechaDeAlta());
-            } else {
-                System.out.println("");            }
+        for (Registrable aut : automotores) {
+            while (aut.stringgetPatente() != null) {
+                if (aut.stringgetPatente().contains(patente)) {
+                    System.out.println("Fecha de alta: "+aut.verFechaDeAlta());
+                }
+                break;
+            }
         }
 
     }
+}
+
+
+
 
 
 

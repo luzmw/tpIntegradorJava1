@@ -45,22 +45,24 @@ public class Moto extends Automotor  implements  VehiculoACombustion, Registrabl
 
     @Override
     public void agregarARegistro() {
+        System.out.println("escriba el tipo de ciclomotor");
+        tipoMoto= scanner.nextLine();
+        this.setTipoMoto(tipoMoto);
+        System.out.println("Vehículo registrado : "+this.verDetalles());
+        System.out.println("desea agregar mas vehículos? 1 -si 3-no");
+        int op = 0;
+        op= scanner.nextInt();
+        do{
+            super.agregarARegistro();
+        }while (op!=0);
+
+
 
     }
 
     @Override
     public String verDetalles() {
-        String fechaAlta = super.getFechaDeAlta().toString();
-        //patente
-        String autorizados = "";
-        String propietario= super.getPropietario().verDetalles();
-
-        for(Conductor c :super.getConductoresAutorizados()){
-            // c.verDetalles() // tenés que completar este método
-            autorizados += c.getNroLicenciaConducir()+" "+c.verDetalles();
-        }
-        return "el auto tiene  " + " puertas, fecha: " + fechaAlta+ " - autorizados: " +propietario;
-
+       return super.verDetalles()+"- tipo de moto ;  "+tipoMoto;
     }
 
     @Override

@@ -33,37 +33,14 @@ public class Utilitario extends  Automotor implements Registrable, VehiculoAComb
 
     @Override
     public void agregarARegistro() {
-        Utilitario u = new Utilitario();
-
-        Propietario p = new Propietario();
-        Conductor caut = new Conductor();
-        List<Conductor> autorizados = new ArrayList<>();
-
-
-
-        //datos propietario
-        System.out.println("Nombre del propietario");
-        p.agregarARegistro();
-        u.setPropietario(p);
-
-        //asignar patenta y fecha de alta
-        LocalDate fechaDeAlta= LocalDate.now();
-        u.setFechaDeAlta(fechaDeAlta);
-
-        //boolean o if tiene conductores
+        System.out.println("Vehículo registrado : "+this.verDetalles());
+        System.out.println("desea agregar mas vehículos? 1 -si 3-no");
         int op = 0;
-        do {
-            System.out.println("Ingre el nombre del conductor autorizado, sino, ingrese 0");
-            caut.agregarARegistro();
-            autorizados.add(caut);
-
-            System.out.println("quiere agregar otro conductor? 1-si 0- no");
-            op= Integer.parseInt(scanner.nextLine());
+        op= scanner.nextInt();
+        do{
+            super.agregarARegistro();
         }while (op!=0);
-        u.setConductoresAutorizados(autorizados);
 
-
-        System.out.println("se agrego "+u.verDetalles());
 
     }
 

@@ -57,7 +57,6 @@ public class Main {
     public static void main(String[] args) {
 
 
-
         MotoElectrica me = new MotoElectrica();
         //crear lista de conductores
         List<Conductor> conductores = new ArrayList<>();
@@ -144,7 +143,7 @@ public class Main {
 
         Propietario pmas = new Propietario();
         pmas.setDni("27565369");
-        pmas.setNombre("juan");
+        pmas.setNombre("Roberto");
         pmas.setDireccion("tapial 555");
         pmas.setLicPropiedad("5555555");
 
@@ -169,6 +168,7 @@ public class Main {
         c2.setTara(96.23);
         c2.setFechaDeAlta(LocalDate.now());
         c2.setTipoDeUso(TipoDeUso.PARTICULAR);
+        c2.setPatente("AQW23JKJ");
         automotores.add(c2);
 
 
@@ -177,6 +177,7 @@ public class Main {
         c3.setTara(69.23);
         c3.setFechaDeAlta(LocalDate.now());
         c3.setTipoDeUso(TipoDeUso.MIXTO);
+        c3.setPatente("AND23SSS");
         automotores.add(c3);
 
         Camion cam = new Camion();
@@ -186,6 +187,7 @@ public class Main {
         cam.setTara(78.36);
         cam.setFechaDeAlta(LocalDate.now());
         cam.setTipoDeUso(TipoDeUso.PROFESIONAL);
+        cam.setPatente("olx23asd");
         automotores.add(cam);
 
 
@@ -196,6 +198,7 @@ public class Main {
         ca.setPatente("asd653");
         ca.setMma(28.5);
         ca.setTara(33.22);
+        ca.setPatente("SDF236NBN");
         //System.out.println(m.verDetalles());
         //agregar automotor a lista de automotores
         automotores.add(auto);
@@ -228,6 +231,8 @@ public class Main {
             System.out.println("3-ver lista  total de autos");
             System.out.println("4-ver lista de propietarios de camiones");
             System.out.println( "5-ver tiempo transcurrido desde el  alta ");
+            System.out.println( "6-ver fecha de alta por patente");
+
             System.out.println("0- salir");
             op = sc.nextInt();
             switch (op) {
@@ -245,7 +250,7 @@ public class Main {
                 case 5:
                    automotor.consultarTiempoDesdePrimerAlta();
                     break;
-                case 6: registro.consultarFechaXPatente("acs2365sdf",automotores);
+                case 6: registro.consultarFechaXPatente("AND23SSS",automotores);
                 break;
 
             }

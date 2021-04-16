@@ -50,44 +50,25 @@ public class Camion extends  Automotor implements  Registrable , VehiculoACombus
         super.asignarPatente();
     }
 
-    //TODO VALIDAR Y AGREGAR SI DESEA AGREGAR MAS CAMIONES y indicar nafta
     @Override
     public void agregarARegistro() {
-        Propietario p = new Propietario();
-        Conductor caut = new Conductor();
-        List<Conductor> autorizados = new ArrayList<>();
-
         System.out.println("Indique la tara ");
         tara= Double.parseDouble(scanner.nextLine());
         this.setTara(tara);
 
-        System.out.println("Indique mma");
-        mma=Double.parseDouble(scanner.nextLine());
-        this.setMma(mma);
-
-        //datos propietario
-        System.out.println("Nombre del propietario");
-        p.agregarARegistro();
-        this.setPropietario(p);
-
-        //asignar patenta y fecha de alta
-        LocalDate fechaDeAlta= LocalDate.now();
-        this.setFechaDeAlta(fechaDeAlta);
-
-        //boolean o if tiene conductores
+       // System.out.println("Indique mma");
+       // mma=scanner.nextDouble();
+      // if(Utilitaria.esDecimal(mma)) {
+       //    this.setMma(mma);
+      // }else{
+       //    System.out.println("Ingrese nuevamente  e valor");}
+        System.out.println("Vehículo registrado : "+this.verDetalles());
+        System.out.println("desea agregar mas vehículos? 1 -si 3-no");
         int op = 0;
-        do {
-            System.out.println("Ingre el nombre del conductor autorizado, sino, ingrese 0");
-            caut.agregarARegistro();
-            autorizados.add(caut);
-
-            System.out.println("quiere agregar otro conductor? 1-si 0- no");
-            op= Integer.parseInt(scanner.nextLine());
+        op= scanner.nextInt();
+        do{
+            super.agregarARegistro();
         }while (op!=0);
-        this.setConductoresAutorizados(autorizados);
-
-
-        System.out.println("se agrego "+this.verDetalles());
 
 
     }
@@ -95,21 +76,20 @@ public class Camion extends  Automotor implements  Registrable , VehiculoACombus
     @Override
     public String verDetalles() {
         Double mma = this.mma;
-        Double tara= this.tara;
-        String fechaAlta = super.getFechaDeAlta().toString();
-        //patente
-        String autorizados = "";
-        String propietario= super.getPropietario().verDetalles();
-
-        for(Conductor c :super.getConductoresAutorizados()){
-            // c.verDetalles() // tenés que completar este método
-            autorizados += c.getNroLicenciaConducir()+" "+c.verDetalles();
-        }
-        return "Datos del vehículo Camión: tara  " + tara+ "  mma "+mma+ " puertas, fecha: " + fechaAlta+ " - autorizados: " +propietario;
+        Double tara = this.tara;
+            return super.verDetalles()+"- mma"+mma+"  -  tara "+tara;
     }
+
+
 
     @Override
     public int indicarlitrosNafta() {
         return super.indicarlitrosNafta();
+    }
+
+    @Override
+    public String stringgetPatente() {
+        this.patente= patente;
+        return patente;
     }
 }

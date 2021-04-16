@@ -1,6 +1,5 @@
 package ada.TP.proyectos;
 
-import java.util.PropertyPermission;
 import java.util.Scanner;
 
 public class Propietario extends Persona implements Registrable {
@@ -37,10 +36,20 @@ public class Propietario extends Persona implements Registrable {
     public void agregarARegistro() {
         System.out.println("ingrese el nombre del propietario");
         String nombre= scanner.nextLine();
-        this.setNombre(nombre);
+        if(Utilitaria.validarString(nombre,20))
+            this.setNombre(nombre);
+        else
+            throw new DatosIncorrectosExcepcion("El nombre no es correcto.");
+
+
         System.out.println("Ingrese el dni del propietario");
         String dni = scanner.nextLine();
+       if(Utilitaria.validarDni(dni))
         this.setDni(dni);
+       else{
+           throw new DatosIncorrectosExcepcion("El nombre no es correcto.");
+
+       }
         System.out.println("Ingrese dirección");
         String direccion = scanner.nextLine();
         this.setDireccion(direccion);

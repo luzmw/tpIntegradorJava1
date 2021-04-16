@@ -98,9 +98,12 @@ public class Automotor implements Registrable , VehiculoACombustion, VehiculoEle
 
         System.out.println("ingrese el día");
         int dia = scanner.nextInt();
-
-        LocalDate fechaDeAlta = LocalDate.of(anio, mes, dia);
+       // LocalDate fechaDeAlta = LocalDate.of(anio, mes, dia);
+        if (Utilitaria.esFechaValida(anio, mes, dia))
         setFechaDeAlta(fechaDeAlta);
+        else{
+            throw new DatosIncorrectosExcepcion("fecha inválida");
+        }
     }
 
 
@@ -143,7 +146,51 @@ public class Automotor implements Registrable , VehiculoACombustion, VehiculoEle
     @Override
     public void agregarARegistro() {
         List<Registrable> automotores= new ArrayList<>();
-        int op = 0;
+        Propietario p = new Propietario();
+        Conductor caut = new Conductor();
+        List<Conductor> autorizados = new LinkedList<>();
+        //tipo de uso
+        int op =0;
+
+        System.out.println("indique el tipo de uso : 1 profesional, 2 particular, 3 mixto ");
+        op= scanner.nextInt();
+
+        switch (op){
+            case 1: this.setTipoDeUso(TipoDeUso.PROFESIONAL);
+                break;
+            case 2: this.setTipoDeUso(TipoDeUso.PARTICULAR);
+                break;
+            case 3: this.setTipoDeUso(TipoDeUso.MIXTO);
+        }
+
+        System.out.println("tipo de uso: "+getTipoDeUso().name());
+
+
+        //datos propietario
+        System.out.println("Datos del propietario ");
+        p.agregarARegistro();
+        this.setPropietario(p);
+
+
+        this.asignarDiaDeAlta();
+        this.setFechaDeAlta(getFechaDeAlta());
+
+
+        //asignar patente
+        this.asignarPatente();
+
+        //boolean o if tiene conductores
+        System.out.println("desea agregar conductores autorizados? 1-si  0- no");
+        op=scanner.nextInt();
+        while (op== 1){
+
+            caut.agregarARegistro();
+            autorizados.add(caut);
+
+            System.out.println("quiere agregar otro conductor? 1-si 0- no");
+            op= scanner.nextInt();
+        }
+        this.setConductoresAutorizados(autorizados);
 
         do {
             System.out.println("Qué tipo de automotor desea dar de alta?");

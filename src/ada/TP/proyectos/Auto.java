@@ -47,58 +47,18 @@ public class Auto extends  Automotor implements Registrable , VehiculoACombustio
 
     @Override
     public void agregarARegistro() {
-
         System.out.println("INgrese la cantidad de puertas");
         cantidadPuertas = Integer.parseInt(scanner.nextLine());
 
-        Propietario p = new Propietario();
-        Conductor caut = new Conductor();
-        List<Conductor> autorizados = new LinkedList<>();
-        //tipo de uso
-        int op =0;
-
-            System.out.println("indique el tipo de uso : 1 profesional, 2 particular, 3 mixto ");
-            op= scanner.nextInt();
-
-            switch (op){
-            case 1: this.setTipoDeUso(TipoDeUso.PROFESIONAL);
-            break;
-            case 2: this.setTipoDeUso(TipoDeUso.PARTICULAR);
-            break;
-            case 3: this.setTipoDeUso(TipoDeUso.MIXTO);
-        }
-
-        System.out.println("tipo de uso ");
+        System.out.println("Vehículo registrado : "+this.verDetalles());
+        System.out.println("desea agregar mas vehículos? 1 -si 3-no");
+        int op = 0;
+        op= scanner.nextInt();
+        do{
+            super.agregarARegistro();
+        }while (op!=0);
 
 
-        //datos propietario
-        System.out.println("Datos del propietario ");
-        p.agregarARegistro();
-        this.setPropietario(p);
-
-
-        this.asignarDiaDeAlta();
-        this.setFechaDeAlta(super.getFechaDeAlta());
-
-
-      //asignar patente
-        this.asignarPatente();
-
-        //boolean o if tiene conductores
-        System.out.println("desea agregar conductores autorizados? 1-si  0- no");
-        op=scanner.nextInt();
-        while (op== 1){
-
-            caut.agregarARegistro();
-            autorizados.add(caut);
-
-            System.out.println("quiere agregar otro conductor? 1-si 0- no");
-            op= scanner.nextInt();
-        }
-        this.setConductoresAutorizados(autorizados);
-
-
-        System.out.println("se agrego "+this.verDetalles());
 
     }
 

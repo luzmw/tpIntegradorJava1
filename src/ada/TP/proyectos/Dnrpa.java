@@ -1,7 +1,9 @@
 package ada.TP.proyectos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Dnrpa {
    private  List<Registro> registros;
@@ -37,6 +39,8 @@ public class Dnrpa {
         return autos;
 }
 
+
+
     /*
          public static Automotor buscarDominio(String dominio){
         Automotor automotor= null;
@@ -49,6 +53,38 @@ public class Dnrpa {
         return automotor;
     }
          */
+
+
+
+
+
+    /*
+
+    public void listarAutomotoresPorDominio(String dominio){
+        SortedMap<String,Automotor> automotores = new TreeMap<>();
+        //Utils_IO.imprimirSeparador();
+        //System.out.println("CONSULTA DE AUTOMOTORES POR DOMINIO");
+        for (Registro_Seccional r : registros){
+            if (dominio=="") automotores.putAll(r.getAutomotores());
+            else {
+                if (r.existeDominio(dominio)) {
+                    automotores.put(dominio,r.getAutomotor(dominio));
+                    break;
+                }
+            }
+        }
+        if (automotores.size()>0) {
+            if (automotores.size()==1)
+                automotores.get(dominio).mostrarDatosConAutorizados();
+            else{
+                Automotor.mostrarDatosTablaEncabezado();
+                automotores.forEach((patente, automotor) -> automotor.mostrarDatosTabla());
+                Utils_IO.mostrarCantidadEncontrada(automotores.size());
+            }
+        } else Utils_IO.mostrarNoSeEncontraronDatos();
+    }
+
+     */
 
 
 }
